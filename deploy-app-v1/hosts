@@ -1,0 +1,11 @@
+[k8s_master]
+lab01
+
+[k8s_workers]
+lab02
+lab03
+
+[k8s_workers:vars]
+K8S_MASTER_NODE_IP=192.168.145.128
+K8S_API_SECURE_PORT=6443
+

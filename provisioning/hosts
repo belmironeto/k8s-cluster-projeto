@@ -1,0 +1,4 @@
+[local]
+localhost ansible_connection=local gather_facts=false ansible_python_interpreter=python2.7 validate_certs=false
+
+[kubernetes]

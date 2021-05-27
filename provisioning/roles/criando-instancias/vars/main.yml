@@ -1,0 +1,10 @@
+---
+# vars file for criando-instancias
+instance_type: t2.micro
+sec_group_name: giropops
+image: ami-01e7ca2ef94a0ae86
+keypair: key-Aws
+region: us-east-01
+count: 3
+profile: giropops
+

@@ -1,0 +1,31 @@
+- name: Download do Script de Instalacao do Docker
+  get_url:
+    url: "{{ url_docker_script }}"
+    dest: "{{ dst_docker_script }}"
+    mode: '0755'
+  register: download_script
+
+- name: Instalando o Docker
+  command: "{{ dst_docker_script }}"
+  when: download_script
+  notify: Restart Docker
+  register: instalando_docker
+
+- name: Ativando o docker
+  service:
+    name: docker
+    enabled: yes
+    state: started
+
+- name: Instalando os pacotes kubeadm, kubelet e kubectl
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - kubelet
+    - kubeadm
+    - kubectl
+  notify: Restart Kubelet
+
+- name: Desativar o swap
+  command: 'swapoff -a'
